@@ -6,4 +6,4 @@ npm-debug.*
 *.key
 *.mobileprovision
 
-/config/dev-keys.js
+/config/azure-ad/dev-keys.js
