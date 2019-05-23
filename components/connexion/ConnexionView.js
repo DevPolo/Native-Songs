@@ -1,10 +1,20 @@
 import React from 'react'
-import { WebBrowser } from 'expo'
+
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
+
+import { getCachedAuthAsync, signInAsync } from '../../config'
 
 class ConnexionView extends React.Component {
   handleConnected = () => {
     this.props.navigation.navigate('Main')
+  }
+
+  handleSignIn = () => {
+    getCachedAuthAsync()
+  }
+
+  handleLogin = () => {
+    signInAsync()
   }
 
   render() {
@@ -13,23 +23,15 @@ class ConnexionView extends React.Component {
         <Text>Connexion view</Text>
         {/* <Button title='Login' /> */}
         <Button title='Déjà connecté ?' onPress={this.handleConnected} />
+        <Button title='Login' onPress={this.handleLogin} />
         <View style={styles.helpContainer}>
-          <TouchableOpacity
-            onPress={this._handleHelpPress}
-            style={styles.helpLink}
-          >
+          <TouchableOpacity onPress={this.handleSignIn} style={styles.helpLink}>
             <Text style={styles.helpLinkText}>
               Help, it didn’t automatically reload!
             </Text>
           </TouchableOpacity>
         </View>
       </View>
-    )
-  }
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     )
   }
 }
